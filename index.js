@@ -6,7 +6,7 @@
  */
 
 import express from 'express'
-import path from 'node:path'
+import path, { dirname } from 'node:path'
 import url from 'node:url';
 import { title } from 'node:process';
 
@@ -26,7 +26,7 @@ const port = process.env.PORT || "8000"
 
 app.set("views", path.join(__dirname, "views"))
 app.set("view engine", "pug")
-
+app .use(express.static(path.join(__dirname, "public")))
 
 /**
  * Routes defs
