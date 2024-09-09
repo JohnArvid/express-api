@@ -7,7 +7,11 @@
 
 import express from 'express'
 import path from 'node:path'
+import url from 'node:url';
+import { title } from 'node:process';
 
+const __filename = url.fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 /**
  * App Variables
  */
@@ -20,12 +24,16 @@ const port = process.env.PORT || "8000"
  * 
  */
 
+app.set("views", path.join(__dirname, "views"))
+app.set("view engine", "pug")
+
+
 /**
  * Routes defs
  */
 
 app.get("/", (req, res) => {
-  res.status(200).send("This is the response string")
+  res.render("index", {title:"Home"})
 })
 
 
