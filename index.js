@@ -6,14 +6,14 @@
  */
 
 import express from 'express'
-import path from Node*path
+import path from 'node:path'
 
 /**
  * App Variables
  */
 
 const app = express();
-const port = pprocess.env.PORT || "8000"
+const port = process.env.PORT || "8000"
 
 /**
  * App Config
