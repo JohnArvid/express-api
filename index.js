@@ -31,11 +31,14 @@ app.use(express.static(path.join(__dirname, "public")))
 /**
  * Routes defs
  */
-
+// second parameter of res.render() is used to pass data from controller to template
 app.get("/", (req, res) => {
   res.render("index", {title:"Home"})
 })
 
+app.get("/user", (req, res) => {
+  res.render("user", {tilte: "Profile", userProfile: {nickname: "Auth0"}})
+})
 
 /**
  * Server activation

@@ -145,3 +145,8 @@ a {
   background: url("plant.jpg") left bottom;
   background-size: cover;
 }
+
+.UserView {
+  background: url("birb.jpg") left bottom;
+  background-size: cover;
+}
