@@ -18,7 +18,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-import { router as authRouter } from './auth';
+import { router as authRouter } from './auth.js';
 
 const __filename = url.fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -92,6 +92,13 @@ passport.serializeUser((user, done) => {
 passport.deserializeUser((user, done) => {
   done(null, user);
 });
+
+
+// Create cusom middleware with Express
+app.use((req, res, next) => {
+  res.locals.isAuthenticated = req.isAuthenticated()
+  next()
+})
 
 // Mount router
 app.use("/", authRouter)

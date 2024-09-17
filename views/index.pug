@@ -10,7 +10,11 @@ block layout-content
         h1 stuff out
       span.Details 
     .Navbuttons 
-      a(href="/user")
-        .NavButton Just test it! 
+      if isAuthenticated 
+        a(href="/user")
+          .NavButton Just test it! 
+      else 
+        a(href="/login")
+          .NavButton Log in
     footer.Footer 
       p This is a test made with 🚅 and 🐶
