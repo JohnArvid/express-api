@@ -106,14 +106,28 @@ app.use("/", authRouter)
 /**
  * Routes defs
  */
+
+const secured = (req, res, next) => {
+  if (req.user) {
+    return next();
+  }
+  req.session.returnTo = req.originalUrl;
+  res.redirect("/login"); 
+}
+
 // second parameter of res.render() is used to pass data from controller to template
 app.get('/', (req, res) => {
   res.render('index', { title: 'Home' });
 });
 
-app.get('/user', (req, res) => {
-  res.render('user', { tilte: 'Profile', userProfile: { nickname: 'Auth0' } });
+app.get('/user', secured, (req, res, next) => {
+  const { _raw, _json, ...userProfile } = req.user;
+  res.render('user', { 
+    title: 'Profile',
+    userProfile: userProfile 
+  });
 });
+
 
 /**
  * Server activation
