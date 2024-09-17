@@ -18,6 +18,8 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
+import { router as authRouter } from './auth';
+
 const __filename = url.fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 /**
@@ -90,6 +92,10 @@ passport.serializeUser((user, done) => {
 passport.deserializeUser((user, done) => {
   done(null, user);
 });
+
+// Mount router
+app.use("/", authRouter)
+
 /**
  * Routes defs
  */
